@@ -1,25 +1,25 @@
 package controle;
 
 public class Start {
+	
 	public static void main(String[] args) {
-		//testando repositorio
-		int a = 1;
-		int b = 15;
-		
-		
-		for(int i = 0; i < 100; i++){
-			System.out.println(i);
-		}
-		
-		
-		while( a < b  ){
-			System.out.println(b);
-			a++;
-		}
+		escreveString(5, "Palmeiras não tem mundial");
+		escreveString(2, "Fora Temer");
+		escreveString(4, "Reformas Já");
 		
 		
 	}
-
+	
+	public static void escreveString(int i, String texto){
+		while ( i > 0) {
+			System.out.println(texto+" -"+i);
+			//i = i-1;
+			i--;
+		}
+		
+	}
+	
+	
 	public static void doisNumero(double n1, double n2) {
 		if(n1 > n2){
 			System.out.println("Este é o maior");
