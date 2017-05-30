@@ -3,11 +3,39 @@ package controle;
 public class Start {
 	
 	public static void main(String[] args) {
-		escreveString(5, "Palmeiras não tem mundial");
-		escreveString(2, "Fora Temer");
-		escreveString(4, "Reformas Já");
+		Pessoa p = new Pessoa();
+		p.nome = "João";
+		p.idade = 28;
+		p.sexo = 'M';
+		p.endereco = "Rua tal casa 9";
 		
 		
+		Pessoa p2 = new Pessoa();
+		p2.nome = "Maria";
+		p2.idade = 19;
+		p2.sexo = 'F';
+		p2.endereco = "Rua 3 casa 4";
+		
+		p.andar();
+		p2.andar();
+		
+	}
+	
+	public static void exemploArray(){
+
+		String[] textos = new String[5];
+		
+		textos[0] = "Fora Temer";
+		textos[1] = "Palmeiras não tem Mundial";
+		textos[2] = "Volta Dilma";
+		textos[3] = "Volta Militares";
+		textos[4] = "A culpa não é minha";
+		
+		
+		for (int i = 0; i < textos.length; i++) {
+			System.out.println(textos[i]);
+		}
+	
 	}
 	
 	public static void escreveString(int i, String texto){
