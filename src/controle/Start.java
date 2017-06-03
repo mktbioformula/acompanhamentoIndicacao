@@ -1,19 +1,45 @@
 package controle;
 
 import animais.Animal;
-import animais.Ave;
 import animais.Cachorro;
 import animais.Mamifero;
 import animais.Peixe;
+import animais.Tubarao;
+import animais.Vaca;
+import controle_empresarial.VendedorExterno;
+import controle_empresarial.Funcionario;
+import controle_empresarial.GeradorDeRelatorios;
+import controle_empresarial.Gerente;
+import controle_empresarial.GerenteCoordenador;
+import controle_empresarial.Vendedor;
 
 public class Start {
 
 	public static void main(String[] args) {
+		
+		String s = "Bola";
+		System.out.println(s.toUpperCase());
+		
+		
+	}
+	
+	
+	public static void verificaTrabalho(Funcionario g){
+		g.trabalhar();
+	}
+	
 
-		Cachorro c = new Cachorro();
-
+	
+	
+	
+	
+	
+	
+	public static void veterinario(Animal c) {
+		System.out.println("tratando cachorro");
 	}
 
+	
 	public static void gravaNoBanco(Cachorro c) {
 
 	}
