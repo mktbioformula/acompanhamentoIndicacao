@@ -1,8 +1,12 @@
 package animais;
 
-public abstract class Animal{
-	public void comer() {
+import java.io.Serializable;
 
+public abstract class Animal implements Serializable{
+	public String nome;
+	
+	public void comer() {
+		System.out.println("Animal comendo");
 	}
 
 	public void dormir() {

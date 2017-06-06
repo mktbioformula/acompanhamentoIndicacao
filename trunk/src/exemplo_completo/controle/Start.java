@@ -1,8 +1,8 @@
-package controle;
+package exemplo_completo.controle;
 
-import bean.GerenteDeVendas;
-import bean.Vendedor;
-import bean.VendedorExterno;
+import exemplo_completo.bean.GerenteDeVendas;
+import exemplo_completo.bean.Vendedor;
+import exemplo_completo.bean.VendedorExterno;
 
 public class Start {
 
