@@ -1,4 +1,4 @@
-package bean;
+package exemplo_completo.bean;
 
 import java.util.Calendar;
 
