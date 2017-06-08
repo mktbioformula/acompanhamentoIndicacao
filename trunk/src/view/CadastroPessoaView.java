@@ -2,10 +2,21 @@ package view;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import bean.Pessoa;
+import controle.PessoaBC;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
-public class CadastroPessoaView extends JFrame {
+public class CadastroPessoaView extends JFrame implements ActionListener {
+	
+	
 	private JTextField nome;
 	private JTextField fone;
 	private JTextField email;
@@ -42,9 +53,32 @@ public class CadastroPessoaView extends JFrame {
 		getContentPane().add(lblEmail);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(this);
 		btnCadastrar.setBounds(143, 250, 117, 25);
 		getContentPane().add(btnCadastrar);
 		this.setBounds(300, 300, 600, 453);
 		
 	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Pessoa p = new Pessoa();
+		
+		p.setNome(this.nome.getText());
+		p.setTelefone(this.fone.getText());
+		p.setEmail(this.email.getText());
+		
+		
+		PessoaBC pbc = new PessoaBC();
+		if(pbc.cadastrar(p)){
+			JOptionPane.showMessageDialog(null, "Gravado com sucesso!");
+		}else{
+			JOptionPane.showMessageDialog(null, "Erro ao gravar pessoa!");
+		}
+		
+	}
+
+
+	
 }
