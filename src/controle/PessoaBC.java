@@ -5,14 +5,20 @@ import dao.PessoaDao;
 
 public class PessoaBC {
 
-	public Boolean cadastrar(Pessoa p){
+	
+	public Boolean gravar(Pessoa p){
 		
-		PessoaDao pd = new PessoaDao();
-		pd.cadastrar(p);
+		if(p.getEmail().toLowerCase().contains("@hotmail")){
+			// não gravar
+		}else{
+			PessoaDao pd = new PessoaDao();
+			pd.gravar(p);
+		}
+		
 		
 		return true;
-		
 	}
+	
 	
 	
 }
