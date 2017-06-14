@@ -12,7 +12,7 @@ public class PessoaBC {
 			// não gravar
 		}else{
 			PessoaDao pd = new PessoaDao();
-			pd.gravar(p);
+			pd.insert(p);
 		}
 		
 		

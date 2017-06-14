@@ -11,9 +11,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
 import bean.Pessoa;
 import controle.PessoaBC;
 import dao.PessoaDao;
+import util.HibernateUtil;
 
 public class CadastroPessoaView extends JFrame implements ActionListener {
 
@@ -114,10 +119,8 @@ public class CadastroPessoaView extends JFrame implements ActionListener {
 		p.setEmail(this.email.getText());
 		p.setFone(this.fone.getText());
 		
-		
-	
-		
 		PessoaBC pbc = new PessoaBC();
+		
 		if(pbc.gravar(p)){
 			JOptionPane.showMessageDialog(null, "Gravado com sucesso");
 		}else{
