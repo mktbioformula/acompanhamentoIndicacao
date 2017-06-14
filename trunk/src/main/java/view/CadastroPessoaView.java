@@ -11,14 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
 import bean.Pessoa;
 import controle.PessoaBC;
-import dao.PessoaDao;
-import util.HibernateUtil;
 
 public class CadastroPessoaView extends JFrame implements ActionListener {
 
