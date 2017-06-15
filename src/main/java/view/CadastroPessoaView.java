@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
+import org.dom4j.DocumentException;
+
 import bean.Pessoa;
 import controle.PessoaBC;
 import exceptions.SSPException;
@@ -123,15 +125,17 @@ public class CadastroPessoaView extends JFrame implements ActionListener {
 			}
 		} catch (SSPException ex) {
 			ex.printStackTrace();
-			JOptionPane.showMessageDialog(null,pbc.chamarPolicia(p));
+			JOptionPane.showMessageDialog(null, pbc.chamarPolicia(p));
 
+		} catch (DocumentException ex) {
+			/*
+			 * definir uma forma de contornar o problema
+			 */
 		} finally {
 			/*
 			 * opcional e sempre vai ser executado
 			 */
 		}
-
-		
 
 	}
 }
