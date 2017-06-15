@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 
 import bean.Pessoa;
 import controle.PessoaBC;
+import exceptions.SSPException;
 
 public class CadastroPessoaView extends JFrame implements ActionListener {
 
@@ -107,23 +108,30 @@ public class CadastroPessoaView extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Pessoa p = new Pessoa();
-		
+
 		p.setNome(this.nome.getText());
 		p.setCpf(this.cpf.getText());
 		p.setEmail(this.email.getText());
 		p.setFone(this.fone.getText());
-		
+
 		PessoaBC pbc = new PessoaBC();
-		
-		if(pbc.gravar(p)){
-			JOptionPane.showMessageDialog(null, "Gravado com sucesso");
-		}else{
-			JOptionPane.showMessageDialog(null, "ERRO");
+		try {
+			if (pbc.gravar(p)) {
+				JOptionPane.showMessageDialog(null, "Gravado com sucesso");
+			} else {
+				JOptionPane.showMessageDialog(null, "ERRO");
+			}
+		} catch (SSPException ex) {
+			ex.printStackTrace();
+			JOptionPane.showMessageDialog(null,pbc.chamarPolicia(p));
+
+		} finally {
+			/*
+			 * opcional e sempre vai ser executado
+			 */
 		}
+
 		
-		
+
 	}
 }
-
-
-
