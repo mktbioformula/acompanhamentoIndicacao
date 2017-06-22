@@ -20,6 +20,12 @@
 		<h:inputText value="#{CervejaMB.bean.tipo}" />
 		
 		<h:commandButton value="Cadastrar" action="#{CervejaMB.gravar}" />
+		
+		<h:dataTable var="cerveja" value="#{CervejaMB.list}">
+			<h:column headerClass="Nome">
+				#{cerveja.nome}
+			</h:column>
+		</h:dataTable>
 	</h:form>
 
 </h:body>
