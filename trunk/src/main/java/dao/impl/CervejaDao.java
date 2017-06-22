@@ -29,5 +29,4 @@ public class CervejaDao implements CervejaDaoI {
 		return list;
 	}
 
-	
 }
