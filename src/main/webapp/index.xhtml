@@ -10,7 +10,11 @@
 <h:head></h:head>
 <h:body>
 
+
+
 	<h:form id="form_cad">
+
+
 		<p:growl sticky="false" life="5000" showDetail="true" />
 		<h:panelGrid columns="2">
 			<p:outputLabel value="Nome" />
@@ -23,7 +27,8 @@
 			<p:outputLabel value="Tipo" />
 			<p:inputText value="#{CervejaMB.bean.tipo}" />
 
-			<p:commandButton value="Cadastrar" update="form_cad" action="#{CervejaMB.gravar}" />
+			<p:commandButton value="Cadastrar" update="form_cad"
+				action="#{CervejaMB.gravar}" ajax="false" />
 		</h:panelGrid>
 
 		<p:dataTable var="cerveja" value="#{CervejaMB.list}">
