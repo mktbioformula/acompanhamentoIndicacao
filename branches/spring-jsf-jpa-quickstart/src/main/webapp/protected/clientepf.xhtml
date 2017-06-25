@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/main-with-nav.xhtml">
+	<ui:define name="body">
+
+		<h:form id="clientepf">
+			<p:growl id="growl" showDetail="true" life="5000" />
+			<p:panel header="Cadastro de Pessoa Física">
+				<p:panelGrid columns="6">
+					<p:outputLabel>Nome</p:outputLabel>
+					<p:inputText value="#{ClientePessoaFisicaMB.bean.nome}" />
+
+					<p:outputLabel>CPF</p:outputLabel>
+					<p:inputText value="#{ClientePessoaFisicaMB.bean.cpf}" />
+
+					<p:outputLabel>Endereço</p:outputLabel>
+					<p:inputText value="#{ClientePessoaFisicaMB.bean.endereco}" />
+
+					<p:outputLabel>Celular</p:outputLabel>
+					<p:inputText value="#{ClientePessoaFisicaMB.bean.celular}" />
+
+					<p:outputLabel>Telefone</p:outputLabel>
+					<p:inputText value="#{ClientePessoaFisicaMB.bean.telefone}" />
+
+					<p:outputLabel>E-mail</p:outputLabel>
+					<p:inputText value="#{ClientePessoaFisicaMB.bean.email}" />
+					<p:commandButton action="#{ClientePessoaFisicaMB.cadastrar}"
+						value="Cadastrar" update="clientepf" />
+				</p:panelGrid>
+
+			</p:panel>
+
+			<p:dataTable var="clientepf" editable="true" paginator="true"
+				rows="5" value="#{ClientePessoaFisicaMB.list}" id="table">
+
+				<p:ajax event="rowEdit" listener="#{ClientePessoaFisicaMB.edit}"
+					update=":clientepf:growl" />
+				<p:ajax event="rowEditCancel"
+					listener="#{ClientePessoaFisicaMB.cancelarEdicao}" />
+
+				<p:column headerText="Nome" sortBy="#{clientepf.nome}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputLabel value="#{clientepf.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{clientepf.nome}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="CPF" sortBy="#{clientepf.cpf}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputLabel value="#{clientepf.cpf}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{clientepf.cpf}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:60px">
+					<p:rowEditor />
+				</p:column>
+
+				<p:column style="width:40px">
+					<p:commandLink id="trash"
+						styleClass="ui-icon ui-icon-trash myIconsSize"
+						action="#{ClientePessoaFisicaMB.delete(clientepf)}"
+						update=":clientepf:table  :clientepf:growl" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
