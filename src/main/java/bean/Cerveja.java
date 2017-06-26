@@ -12,7 +12,14 @@ public class Cerveja {
 	private String nome;
 	private Double teorAlcoolico;
 	private String tipo;
+	private String cor;
 	
+	public String getCor() {
+		return cor;
+	}
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
 	public Integer getId() {
 		return id;
 	}
