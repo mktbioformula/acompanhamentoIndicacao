@@ -12,8 +12,17 @@ public class Cerveja {
 	private String nome;
 	private Double teorAlcoolico;
 	private String tipo;
+	private Double preco;
 	private String cor;
 	
+	
+	
+	public Double getPreco() {
+		return preco;
+	}
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
 	public String getCor() {
 		return cor;
 	}
