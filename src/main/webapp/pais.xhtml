@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head></h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+
+		<ui:define name="content">
+			<h:form id="form_pais">
+
+				<p:growl sticky="false" life="5000" showDetail="true" />
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome" />
+					<p:inputText value="#{PaisMB.bean.nome}" required="true"
+						requiredMessage="Por favor informe o nome do pais" />
+
+					<p:outputLabel value="Continente" />
+					<p:inputText value="#{PaisMB.bean.continente}" />
+
+					<p:outputLabel value="Tipo" />
+					<p:inputText value="#{PaisMB.bean.tipo}" />
+
+					<p:outputLabel value="Lingua" />
+					<p:inputText value="#{PaisMB.bean.lingua}" />
+
+					<p:outputLabel value="Status" />
+					<p:inputText value="#{PaisMB.bean.status}" />
+
+					<p:commandButton value="Inserir" update="form_pais"
+						action="#{PaisMB.gravar}" ajax="false" />
+				</h:panelGrid>
+
+				<p:dataTable var="pais" value="#{PaisMB.list}">
+					<p:column headerText="Nome">
+				#{pais.nome}
+			</p:column>
+
+					<p:column>
+				#{pais.continente}
+			</p:column>
+
+					<p:column>
+				#{pais.tipo}
+			</p:column>
+					<p:column>
+				#{pais.lingua}
+			</p:column>
+
+					<p:column>
+				#{pais.status}
+			</p:column>
+
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
