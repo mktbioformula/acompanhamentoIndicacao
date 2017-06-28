@@ -3,6 +3,7 @@ package mb;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -14,11 +15,12 @@ import controle.esp.PaisBCI;
 import controle.impl.PaisBC;
 
 @ManagedBean(name = "PaisMB")
-@ViewScoped
+@ApplicationScoped
 public class PaisMB {
 	private PaisBCI controle;
 	private Pais bean;
 	private List<Pais> list;
+	
 	
 	@PostConstruct
 	public void init() {
