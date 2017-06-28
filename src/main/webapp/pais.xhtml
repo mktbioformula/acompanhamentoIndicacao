@@ -12,6 +12,11 @@
 	<ui:composition template="template/template.xhtml">
 
 		<ui:define name="content">
+
+			
+
+
+
 			<h:form id="form_pais">
 
 				<p:growl sticky="false" life="5000" showDetail="true" />
@@ -24,16 +29,25 @@
 					<p:inputText value="#{PaisMB.bean.continente}" />
 
 					<p:outputLabel value="Tipo" />
-					<p:inputText value="#{PaisMB.bean.tipo}" />
+					<p:selectOneMenu value="#{PaisMB.bean.tipo}">
+						<f:selectItem itemLabel="Primeiro Mundo" itemValue="1" />
+						<f:selectItem itemLabel="Segundo Mundo" itemValue="2" />
+						<f:selectItem itemLabel="Terceiro Mundo" itemValue="3" />
+					</p:selectOneMenu>
+
+
+
 
 					<p:outputLabel value="Lingua" />
 					<p:inputText value="#{PaisMB.bean.lingua}" />
 
 					<p:outputLabel value="Status" />
-					<p:inputText value="#{PaisMB.bean.status}" />
+					<p:selectBooleanButton id="value2" value="#{PaisMB.bean.status}"
+						onLabel="Yes" offLabel="No" onIcon="ui-icon-check"
+						offIcon="ui-icon-close" />
 
 					<p:commandButton value="Inserir" update="form_pais"
-						action="#{PaisMB.gravar}" ajax="false" />
+						action="#{PaisMB.gravar}" />
 				</h:panelGrid>
 
 				<p:dataTable var="pais" value="#{PaisMB.list}">
