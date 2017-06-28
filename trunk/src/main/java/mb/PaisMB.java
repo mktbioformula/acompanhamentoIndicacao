@@ -7,13 +7,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 
 import bean.Pais;
 import controle.esp.PaisBCI;
 import controle.impl.PaisBC;
 
 @ManagedBean(name = "PaisMB")
-@ApplicationScoped
+@ViewScoped
 public class PaisMB {
 	private PaisBCI controle;
 	private Pais bean;
@@ -23,6 +24,7 @@ public class PaisMB {
 	public void init() {
 		this.controle = new PaisBC();
 		this.bean = new Pais();
+		this.bean.setStatus(true);
 		this.list = controle.select();
 	}
 
