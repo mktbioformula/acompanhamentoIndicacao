@@ -16,7 +16,6 @@ import controle.esp.PaisBCI;
 import controle.impl.PaisBC;
 
 @ManagedBean(name = "PaisMB")
-@ApplicationScoped
 public class PaisMB {
 	private PaisBCI controle;
 	private Pais bean;
@@ -72,13 +71,21 @@ public class PaisMB {
 	}
 
 	public void gravar() {
+		
+		this.bean.setLingua(this.lingua);
 		this.controle.insert(this.bean);
 		this.bean = new Pais();
 		this.list = controle.select();
-
+		this.lingua = new Lingua();
+		this.lingua.setNome("Selecione uma Lingua");
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Ok", "Pais inserido com sucesso! "));
 	
+	}
+	
+	public void teste(){
+		System.out.println("teste");
+		System.out.println(this.lingua.getNome());
 	}
 	
 

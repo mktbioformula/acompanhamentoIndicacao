@@ -17,7 +17,7 @@
 
 
 
-			<h:form id="form_pais">
+			<h:form id="formpais">
 
 				<p:growl sticky="false" life="5000" showDetail="true" />
 				<h:panelGrid columns="2">
@@ -39,7 +39,7 @@
 
 
 					<p:outputLabel value="Lingua" />
-					<p:commandButton value="#{PaisMB.lingua.nome}" type="button"
+					<p:commandButton value="#{PaisMB.lingua.nome}" id="btnpais" type="button"
 						onclick="PF('listlinguas').show();" />
 
 					<p:outputLabel value="Status" />
@@ -47,7 +47,7 @@
 						onLabel="Yes" offLabel="No" onIcon="ui-icon-check"
 						offIcon="ui-icon-close" />
 
-					<p:commandButton value="Inserir" update="form_pais"
+					<p:commandButton value="Inserir" update="formpais"
 						action="#{PaisMB.gravar}" />
 				</h:panelGrid>
 
@@ -73,15 +73,24 @@
 
 				</p:dataTable>
 
-				<p:dialog widgetVar="listlinguas" height="500" width="500" header="Selecione uma lingua"
-					resizable="false" showEffect="clip" hideEffect="clip">
-					<p:dataTable var="lingua" value="#{LinguaMB.list}">
-						<p:column headerText="Nome">
-				#{lingua.nome}
-			</p:column>
+				<p:dialog widgetVar="listlinguas" height="500" width="500"
+					header="Selecione uma lingua" resizable="false" showEffect="clip"
+					hideEffect="clip">
 
 
+					<p:dataTable var="lingua" value="#{LinguaMB.list}"
+						selectionMode="single" selection="#{PaisMB.lingua}"
+						rowKey="#{lingua.id}">
+
+						<p:ajax event="rowSelect" listener="#{PaisMB.teste}" update=":formpais:btnpais" />
+
+
+						<p:column headerText="Id">
+							<h:outputText value="#{lingua.nome}" />
+						</p:column>
 					</p:dataTable>
+
+
 				</p:dialog>
 
 			</h:form>
