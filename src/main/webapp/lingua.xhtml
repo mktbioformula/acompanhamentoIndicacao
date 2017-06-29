@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+
+		<ui:define name="content">
+
+
+
+			<h:form id="lingua">
+
+				<p:growl sticky="false" life="5000" showDetail="true" />
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome" />
+					<p:inputText value="#{LinguaMB.bean.nome}" />
+
+
+					<p:outputLabel value="Origem" />
+					<p:inputText value="#{LinguaMB.bean.origem}" />
+
+
+					<p:commandButton value="Inserir" update="lingua"
+						action="#{LinguaMB.gravar}" />
+				</h:panelGrid>
+
+
+				<p:dataTable var="lingua" value="#{LinguaMB.list}">
+					<p:column headerText="Nome">
+				#{lingua.nome}
+			</p:column>
+
+					<p:column headerText="Origem">
+				#{lingua.origem}
+			</p:column>
+
+				</p:dataTable>
+
+
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
