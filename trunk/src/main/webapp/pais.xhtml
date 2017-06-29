@@ -13,7 +13,7 @@
 
 		<ui:define name="content">
 
-			
+
 
 
 
@@ -39,7 +39,8 @@
 
 
 					<p:outputLabel value="Lingua" />
-					<p:inputText value="#{PaisMB.bean.lingua}" />
+					<p:commandButton value="#{PaisMB.lingua.nome}" type="button"
+						onclick="PF('listlinguas').show();" />
 
 					<p:outputLabel value="Status" />
 					<p:selectBooleanButton id="value2" value="#{PaisMB.bean.status}"
@@ -71,8 +72,30 @@
 			</p:column>
 
 				</p:dataTable>
+
+				<p:dialog widgetVar="listlinguas" height="500" width="500" header="Selecione uma lingua"
+					resizable="false" showEffect="clip" hideEffect="clip">
+					<p:dataTable var="lingua" value="#{LinguaMB.list}">
+						<p:column headerText="Nome">
+				#{lingua.nome}
+			</p:column>
+
+
+					</p:dataTable>
+				</p:dialog>
+
 			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>
 </html>
+
+
+
+
+
+
+
+
+
+
