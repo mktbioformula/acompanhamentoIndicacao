@@ -13,10 +13,6 @@
 
 		<ui:define name="content">
 
-
-
-
-
 			<h:form id="formpais">
 
 				<p:growl sticky="false" life="5000" showDetail="true" />
@@ -34,9 +30,6 @@
 						<f:selectItem itemLabel="Segundo Mundo" itemValue="2" />
 						<f:selectItem itemLabel="Terceiro Mundo" itemValue="3" />
 					</p:selectOneMenu>
-
-
-
 
 					<p:outputLabel value="Lingua" />
 					<p:commandButton value="#{PaisMB.lingua.nome}" id="btnpais" type="button"
@@ -56,18 +49,18 @@
 				#{pais.nome}
 			</p:column>
 
-					<p:column>
+					<p:column  headerText="Continente">
 				#{pais.continente}
 			</p:column>
 
-					<p:column>
+					<p:column  headerText="Tipo">
 				#{pais.tipo}
 			</p:column>
-					<p:column>
+					<p:column  headerText="Lingua">
 				#{pais.lingua}
 			</p:column>
 
-					<p:column>
+					<p:column  headerText="Status">
 				#{pais.status}
 			</p:column>
 

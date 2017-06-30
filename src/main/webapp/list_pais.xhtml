@@ -10,29 +10,28 @@
 <h:head></h:head>
 <h:body>
 	<ui:composition template="template/template.xhtml">
-
-
 		<ui:define name="content">
-			<h:form id="form_cad_pais">
+			<h:form id="formlist">
 				<p:dataTable var="pais" value="#{PaisMB.list}">
 					<p:column headerText="Nome">
 						#{pais.nome}
 					</p:column>
 
-					<p:column>
+					<p:column headerText="Status">
 						#{pais.status}
 					</p:column>
 
-					<p:column>
+					<p:column headerText="Tipo">
 						#{pais.tipo}
 					</p:column>
-					<p:column>
+					
+					<p:column headerText="Lingua">
 						#{pais.lingua}
 					</p:column>
 
-					<p:column>
+					<p:column headerText="Continente">
 						#{pais.continente}
-					</p:column>
+					</p:column>					
 				</p:dataTable>
 			</h:form>
 		</ui:define>
