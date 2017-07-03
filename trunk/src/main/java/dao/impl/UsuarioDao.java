@@ -6,29 +6,25 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import bean.Livro;
-import dao.esp.LivroDaoI;
+import bean.Usuario;
+import dao.esp.UsuarioDaoI;
 import util.HibernateUtil;
 
-public class LivroDao implements LivroDaoI {
+public class UsuarioDao implements UsuarioDaoI {
 
-	public void ferrou(){
-		
-	}
-	
-	public void insert(Livro l) {
+	public void insert(Usuario l) {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
 		Transaction tx = s.beginTransaction();
 		s.persist(l);
 		tx.commit();
-		s.close();
+		s.close();		
 	}
 
-	public List<Livro> select() {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+	public List<Usuario> select() {
+		SessionFactory sf = HibernateUtil.getSessionFactory();		
 		Session s = sf.openSession();
-		List<Livro> list = s.createCriteria(Livro.class).list();
+		List<Usuario> list = s.createCriteria(Usuario.class).list();
 		return list;
 	}
 
