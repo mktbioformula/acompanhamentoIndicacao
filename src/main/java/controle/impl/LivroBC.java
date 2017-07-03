@@ -20,8 +20,7 @@ public class LivroBC implements LivroBCI {
 	}
 
 	public List<Livro> select() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select();
 	}
 
 }
