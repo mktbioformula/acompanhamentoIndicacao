@@ -11,7 +11,14 @@ public class Autor {
 	@GeneratedValue
 	private Integer id;
 	private String nome;
+	private String cpf;
 	
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 	public Integer getId() {
 		return id;
 	}
