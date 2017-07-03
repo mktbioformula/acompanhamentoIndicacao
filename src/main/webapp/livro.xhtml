@@ -25,7 +25,11 @@
 					<p:calendar value="#{LivroMB.bean.publicacao}" />
 
 					<p:outputLabel value="Genero" />
-					<p:inputText value="#{LivroMB.bean.genero}" />
+					<p:selectOneListbox value="#{selectOneView.option}">
+					<f:selectItem itemLabel="Romance" itemValue="1"></f:selectItem>
+					<f:selectItem itemLabel="Terror" itemValue="2"></f:selectItem>
+					<f:selectItem itemLabel="Comédia" itemValue="3"></f:selectItem>
+					</p:selectOneListbox> 
 
 					<p:commandButton value="Cadastrar" update="form_cad"
 						action="#{LivroMB.gravar}" ajax="true" />
