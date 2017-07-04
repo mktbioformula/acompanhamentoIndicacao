@@ -13,15 +13,18 @@
 		<ui:define name="content">
 			<h:form id="form_cad">
 				<p:growl sticky="false" life="5000" showDetail="true" />
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="1">
+					
 					<p:outputLabel value="Genero" />
 					<p:inputText value="#{GeneroMB.bean.nome}" required="true"
-						requiredMessage="Por favor informe o nome" />
+						requiredMessage="Por favor informe o Genero" />
+					
 					<p:commandButton value="Cadastrar" update="form_cad"
 						action="#{GeneroMB.gravar}" ajax="true" />
 				</h:panelGrid>
+				
 				<p:dataTable var="Genero" value="#{GeneroMB.list}">
-			<p:column headerText="Genero">
+			<p:column headerText="Nome">
 				#{genero.nome}
 			</p:column>
 				</p:dataTable>

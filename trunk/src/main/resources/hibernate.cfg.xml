@@ -18,6 +18,7 @@
 		<mapping class="bean.Livro" />
 		<mapping class="bean.Usuario" />
 		<mapping class="bean.Editora" />
+		<mapping class="bean.Genero" />
 
 	</session-factory>
 </hibernate-configuration>
