@@ -16,8 +16,7 @@ public class UsuarioBC implements UsuarioBCI {
 	}
 
 	public List<Usuario> select() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select();
 	}
 
 }
