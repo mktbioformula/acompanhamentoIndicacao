@@ -20,10 +20,10 @@
 						requiredMessage="Por favor informe o Genero" />
 					
 					<p:commandButton value="Cadastrar" update="form_cad"
-						action="#{GeneroMB.gravar}" ajax="true" />
+						action="#{GeneroMB.gravar}"  />
 				</h:panelGrid>
 				
-				<p:dataTable var="Genero" value="#{GeneroMB.list}">
+				<p:dataTable var="genero" value="#{GeneroMB.list}">
 			<p:column headerText="Nome">
 				#{genero.nome}
 			</p:column>
