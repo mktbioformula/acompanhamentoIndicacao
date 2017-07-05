@@ -10,13 +10,9 @@ import dao.impl.LivroDao;
 public class LivroBC implements LivroBCI {
 
 	private LivroDaoI dao = new LivroDao();
-	
+
 	public void insert(Livro l) {
-		if(l.getGenero().equals("Nazismo")){
-			/*---*/
-		}else{
-			dao.insert(l);
-		}
+		dao.insert(l);
 	}
 
 	public List<Livro> select() {

@@ -12,6 +12,7 @@ public class GeneroBC implements GeneroBCI{
 	private GeneroDaoI dao = new GeneroDao();
 	
 	public void insert(Genero g) {
+		dao.insert(g);
 	}
 
 	public List<Genero> select() {

@@ -29,6 +29,7 @@ public class GeneroDao implements GeneroDaoI {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
 		List<Genero> list = s.createCriteria(Genero.class).list();
+		
 		return list;
 	}
 
