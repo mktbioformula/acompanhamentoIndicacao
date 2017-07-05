@@ -1,9 +1,13 @@
 package bean;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -20,6 +24,10 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private Integer tipo;
+	@OneToMany(targetEntity = Emprestimo.class 
+			, mappedBy = "usuario")
+	private List<Emprestimo> emprestimos;
+
 	
 	public Integer getId() {
 		return id;
