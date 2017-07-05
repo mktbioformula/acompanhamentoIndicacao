@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -26,7 +27,8 @@ public class Emprestimo {
 			joinColumns = { @JoinColumn(name = "emprestimo_id") }, inverseJoinColumns = {
 					@JoinColumn(name = "livro_id") })
 	private List<Livro> livros;
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "fk_usuario")
 	private Usuario usuario;
 	@OneToOne
 	private Cliente cliente;
