@@ -24,13 +24,6 @@
 					<p:outputLabel value="Publicação" />
 					<p:calendar value="#{LivroMB.bean.publicacao}" />
 
-					<p:outputLabel value="Genero" />
-					<p:selectOneListbox value="#{selectOneView.option}">
-					<f:selectItem itemLabel="Romance" itemValue="1"></f:selectItem>
-					<f:selectItem itemLabel="Terror" itemValue="2"></f:selectItem>
-					<f:selectItem itemLabel="Comédia" itemValue="3"></f:selectItem>
-					</p:selectOneListbox> 
-
 					<p:commandButton value="Cadastrar" update="form_cad"
 						action="#{LivroMB.gravar}" ajax="true" />
 				</h:panelGrid>
@@ -39,14 +32,14 @@
 					<p:column headerText="Nome">
 				#{livro.nome}
 			</p:column>
-			<p:column headerText="Edição">
+					<p:column headerText="Edição">
 				#{livro.edicao}
 			</p:column>
-				<p:column headerText="Publicação">
+					<p:column headerText="Publicação">
 				#{livro.publicacao}
 			</p:column>
-			
-			<p:column headerText="Genero">
+
+					<p:column headerText="Genero">
 				#{livro.genero}
 			</p:column>
 				</p:dataTable>

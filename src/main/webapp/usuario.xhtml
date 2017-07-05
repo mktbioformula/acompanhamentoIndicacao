@@ -19,7 +19,7 @@
 						requiredMessage="Por favor informe o nome" />
 
 					<p:outputLabel value="e-mail" />
-					<p:inputText value="#{#{UsuarioMB.bean.email}" />
+					<p:inputText value="#{UsuarioMB.bean.email}" />
 
 					<p:outputLabel value="Senha" />
 					<p:inputText value="#{UsuarioMB.bean.senha}" />
@@ -28,8 +28,9 @@
 					<p:inputText value="#{UsuarioMB.bean.tipo}" />
 
 					<p:commandButton value="Cadastrar" update="form_cad"
-						action="#{UsuarioMB.gravar}" ajax="false" />
+						action="#{UsuarioMB.gravar}"   />
 				</h:panelGrid>
+
 
 				<p:dataTable var="usuario" value="#{UsuariosMB.list}">
 					<p:column headerText="Nome">
@@ -46,7 +47,6 @@
 					<p:column>
 						#{usuario.tipo}
 					</p:column>
-
 				</p:dataTable>
 			</h:form>
 		</ui:define>
