@@ -2,13 +2,19 @@ package bean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
+@SequenceGenerator(name = "seq_editora", 
+sequenceName = "editora_seq")
 public class Editora {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy 
+			= GenerationType.SEQUENCE , 
+			generator = "seq_editora")
 	private Integer id;
 	private String nome;
 	private String telefone;
