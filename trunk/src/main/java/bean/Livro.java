@@ -1,19 +1,27 @@
 package bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 
 @Entity
+@SequenceGenerator(name = "seq_livro", 
+sequenceName = "livro_seq")
 public class Livro {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy 
+			= GenerationType.SEQUENCE , 
+			generator = "seq_livro")
 	private Integer id;
 	private String nome;
 	@OneToOne
@@ -23,7 +31,17 @@ public class Livro {
 	private String edicao;
 	private Date publicacao;
 	private String genero;
+	@ManyToMany(mappedBy = "livros")
+	private List<Emprestimo> emprestimos;
 	
+	
+	
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
+	}
 	public Integer getId() {
 		return id;
 	}
