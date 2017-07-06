@@ -21,6 +21,12 @@
 		<mapping class="bean.Genero" />
 		<mapping class="bean.Emprestimo" />
 		<mapping class="bean.Cliente" />
+		
+		<mapping class="bean.Escola" />
+		<mapping class="bean.Curso" />
+		<mapping class="bean.Turma" />
+		<mapping class="bean.Professor" />
+		<mapping class="bean.Aluno" />
 
 	</session-factory>
 </hibernate-configuration>
