@@ -45,6 +45,8 @@ public class LivroMB {
 	}
 	
 	public void gravar(){
+		System.out.println("teste");
+		
 		this.controle.insert(this.bean);
 		this.bean = new Livro();
 		this.list = controle.select();
