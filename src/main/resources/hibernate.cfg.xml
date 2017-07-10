@@ -12,7 +12,7 @@
 		<property name="hibernate.connection.password">postgres</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="show_sql">true</property>
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 
 		<mapping class="bean.Autor" />
 		<mapping class="bean.Livro" />
@@ -22,12 +22,6 @@
 		<mapping class="bean.Emprestimo" />
 		<mapping class="bean.Cliente" />
 		
-		<mapping class="bean.Escola" />
-		<mapping class="bean.Curso" />
-		<mapping class="bean.Turma" />
-		<mapping class="bean.Professor" />
-		<mapping class="bean.Aluno" />
-
 	</session-factory>
 </hibernate-configuration>
 
