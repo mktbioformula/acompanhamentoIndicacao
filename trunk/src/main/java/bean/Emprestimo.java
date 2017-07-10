@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,15 +23,15 @@ public class Emprestimo {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_emprestimo")
 	private Integer id;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "livro_emprestimo",
 			joinColumns = { @JoinColumn(name = "emprestimo_id") }, inverseJoinColumns = {
 					@JoinColumn(name = "livro_id") })
 	private List<Livro> livros;
-	@ManyToOne
+	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_usuario")
 	private Usuario usuario;
-	@OneToOne
+	@OneToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Cliente cliente;
 	private Date inicio;
 	private Date fim;
