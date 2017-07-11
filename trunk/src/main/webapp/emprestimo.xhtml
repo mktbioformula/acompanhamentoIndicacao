@@ -24,11 +24,11 @@
 						onclick="PF('tab_livros').show();" />
 				</h:panelGrid>
 				<h:panelGrid columns="2">
-					<p:commandButton value="Finalizar Emprestimo" update="form_emprestimo" action="#{EmprestimoMB.insert}"  />
+					<p:commandButton value="Finalizar Emprestimo"
+						update="form_emprestimo" action="#{EmprestimoMB.insert}" />
 				</h:panelGrid>
 
-
-
+				
 
 				<p:dialog header="Livros" widgetVar="tab_livros" modal="true"
 					height="300" width="600">
