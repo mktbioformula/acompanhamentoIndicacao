@@ -7,21 +7,22 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/livraria</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/PECUARIA</property>
 		<property name="hibernate.connection.username">postgres</property>
-		<property name="hibernate.connection.password">postgres</property>
+		<property name="hibernate.connection.password">14232527</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="show_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
 
-		<mapping class="bean.Autor" />
-		<mapping class="bean.Livro" />
-		<mapping class="bean.Usuario" />
-		<mapping class="bean.Editora" />
-		<mapping class="bean.Genero" />
-		<mapping class="bean.Emprestimo" />
-		<mapping class="bean.Cliente" />
+		<mapping class="bean.animal" />
+		<mapping class="bean.curral" />
+		<mapping class="bean.especie" />
+		<mapping class="bean.filial" />
+		<mapping class="bean.grupo" />
+		<mapping class="bean.lote" />
+		<mapping class="bean.raca" />
 		
+
 	</session-factory>
 </hibernate-configuration>
 

@@ -14,18 +14,25 @@
 
 		<p:menubar autoDisplay="false">
 			<p:submenu label="Cadastrar" icon="ui-icon-document">
-				<p:menuitem value="Usuário" url="usuario.jsf" />			
-				<p:menuitem value="Autor" url="Autor.jsf" />
-				<p:menuitem value="Livro" url="livro.jsf" />
-				<p:menuitem value="Genero" url="genero.jsf" />
+				<p:menuitem value="Cervejas" url="cerveja.jsf" />
+				<p:menuitem value="Lista de cervejas" url="list_cerveja.jsf" />
+				<p:menuitem value="Paises" url="pais.jsf" />
+				<p:menuitem value="Cadastro de Linguas" url="lingua.jsf" />
+				<p:menuitem value="Lista de paises" url="lista_paises.jsf" />
 			</p:submenu>
-			<p:submenu label="Listas" icon="ui-icon-document">
-				<p:menuitem value="Lista de Usuários" url="list_usuario.jsf" />
-				<p:menuitem value="Lista de Livros" url="list_livro.jsf" />
-				
-			</p:submenu>
-
 		</p:menubar>
+
+
+		<h:form>
+			<h:panelGrid columns="2">
+				<p:selectOneMenu value="#{TemaMB.tema}">
+					<f:selectItem itemLabel="Vader" itemValue="vader" />
+					<f:selectItem itemLabel="Start" itemValue="start" />
+					<f:selectItem itemLabel="Sunny" itemValue="sunny" />
+				</p:selectOneMenu>
+				<p:commandButton value="Trocar" ajax="false" />
+			</h:panelGrid>
+		</h:form>
 	</ui:composition>
 </body>
 </html>
