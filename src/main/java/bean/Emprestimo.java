@@ -23,7 +23,7 @@ public class Emprestimo {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_emprestimo")
 	private Integer id;
 
-	@ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany( fetch = FetchType.EAGER)
 	@JoinTable(name = "livro_emprestimo",
 			joinColumns = { @JoinColumn(name = "emprestimo_id") }, inverseJoinColumns = {
 					@JoinColumn(name = "livro_id") })

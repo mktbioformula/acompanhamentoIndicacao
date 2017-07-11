@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import bean.Emprestimo;
 import bean.Livro;
 import controle.esp.EmprestimoBCI;
+import controle.impl.EmprestimoBC;
 
 @ManagedBean(name = "EmprestimoMB")
 @ViewScoped
@@ -24,8 +25,8 @@ public class EmprestimoMB {
 
 	@PostConstruct
 	public void init() {
-		/* criar uma instancia da camada de controle */
-		/* carregar a lista de emprestimos */
+		this.controle = new EmprestimoBC();
+		this.list = controle.select();
 		this.bean = new Emprestimo();
 	}
 
@@ -54,9 +55,8 @@ public class EmprestimoMB {
 	}
 
 	public void insert() {
-
 		this.bean.setLivros(this.livros);
-		// this.controle.insert(this.bean);
+		this.controle.insert(this.bean);
 		this.bean = new Emprestimo();
 		this.livros = new ArrayList<Livro>();
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -65,3 +65,6 @@ public class EmprestimoMB {
 	}
 
 }
+
+
+
