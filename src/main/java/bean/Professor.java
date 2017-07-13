@@ -4,20 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name = "seq_cliente", 
-sequenceName = "cliente_seq")
-public class Cliente {
+@SequenceGenerator(name = "seq_professor", sequenceName = "professor_seq")
+public class Professor {
 	@Id
-	@GeneratedValue(strategy 
-			= GenerationType.SEQUENCE , 
-			generator = "seq_cliente")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_professor")
 	private Integer id;
 	private String nome;
-	private String cpf;
-	
+	@OneToOne
+	private Disciplina diciplina;
 	public Integer getId() {
 		return id;
 	}
@@ -30,10 +28,10 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getCpf() {
-		return cpf;
+	/*public Disciplina getDiciplina() {
+		return diciplina;
 	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+	public void setDiciplina(Disciplina diciplina) {
+		this.diciplina = diciplina;
+	}*/
 }
