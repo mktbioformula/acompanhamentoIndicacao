@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+		<ui:define name="content">
+			<h:form id="form_turma">
+				<p:growl sticky="false" life="5000" showDetail="true" />
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Código: " />
+					<p:inputText size="50" value="#{TurmaMB.bean.codigo}" required="true"
+						label="Código" />
+
+					<p:outputLabel value="Curso: " />
+					<p:commandButton value="Selecionar" type="button"
+						onclick="PF('tab_curso').show();" />
+						
+					<p:outputLabel value="Alunos: " />
+					<p:commandButton value="Selecionar" type="button"
+						onclick="PF('tab_aluno').show();" />
+				</h:panelGrid>
+				
+				<p:dataTable var="aluno" value="#{TurmaMB.bean.alunos}" id="alunos_selecionados">
+					<f:facet name="header">
+						Alunos matriculados nesta turma:
+					</f:facet>
+					<p:column headerText="Id">
+						<h:outputText value="#{aluno.id}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{aluno.nome}" />
+					</p:column>
+					<p:column headerText="Turma">
+						<h:outputText value="#{aluno.turma}" />
+					</p:column>
+				</p:dataTable>
+
+				<h:panelGrid columns="1">
+					<p:commandButton value="Incluir" update="form_turma"
+						action="#{TurmaMB.gravar}" />
+				</h:panelGrid>
+				
+				<p:dialog header="Cursos" widgetVar="tab_curso" modal="true"
+					height="300" width="600">
+
+					<p:dataTable var="curso" value="#{CursoMB.lista}"
+						selection="#{TurmaMB.bean.curso}" rowKey="#{curso.id}">
+						<f:facet name="header">Selecione o curso desta Turma</f:facet>
+						<p:column selectionMode="single"
+							style="width:16px;text-align:center" />
+						<p:column headerText="Id">
+							<h:outputText value="#{curso.id}" />
+						</p:column>
+						<p:column headerText="Código">
+							<h:outputText value="#{curso.codigo}" />
+						</p:column>
+						
+						<p:commandButton value="Confirmar" type="button"
+						onclick="PF('tab_aluno').hide();" update="form_turma" />
+					</p:dataTable>
+				</p:dialog>
+
+				<p:dialog header="Alunos" widgetVar="tab_aluno" modal="true"
+					height="300" width="600" >
+
+					<p:dataTable var="aluno" value="#{AlunoMB.lista}"
+						selection="#{TurmaMB.bean.alunos}" rowKey="#{aluno.id}">
+						<f:facet name="header">Selecione os alunos desta turma</f:facet>
+						<p:column selectionMode="multiple" />
+						<p:column headerText="Id">
+							<h:outputText value="#{aluno.id}" />
+						</p:column>
+						<p:column headerText="Nome">
+							<h:outputText value="#{aluno.nome}" />
+						</p:column>
+					</p:dataTable>
+						<p:commandButton value="Confirmar"
+						onclick="PF('tab_aluno').hide();" 
+						update=":form_turma:alunos_selecionados" />
+						
+				</p:dialog>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

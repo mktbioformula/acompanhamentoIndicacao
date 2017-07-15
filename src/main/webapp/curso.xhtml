@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+		<ui:define name="content">
+			<h:form id="form_curso">
+				<p:growl sticky="false" life="5000" showDetail="true" />
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Código: " />
+					<p:inputText size="50" value="#{CursoMB.bean.codigo}"
+						required="true" label="Código" />
+
+					<p:outputLabel value="Turmas " />
+					<p:commandButton value="Selecionar" type="button"
+						onclick="PF('tab_turma').show();" />
+
+					<p:outputLabel value="Disciplinas: " />
+					<p:commandButton value="Selecionar" type="button"
+						onclick="PF('tab_disciplina').show();" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="1">
+					<p:commandButton value="Incluir" update="form_curso"
+						action="#{CursoMB.gravar}" />
+				</h:panelGrid>
+
+				<p:dialog header="Turmas" widgetVar="tab_turma" modal="true"
+					height="300" width="600">
+
+					<p:dataTable var="turma" value="#{TurmaMB.lista}"
+						selection="#{CursoMB.bean.turmas}" rowKey="#{turma.id}">
+						<f:facet name="header">Selecione as turmas para este curso</f:facet>
+						<p:column selectionMode="multiple" />
+						<p:column headerText="Id">
+							<h:outputText value="#{turma.id}" />
+						</p:column>
+						<p:column headerText="Código">
+							<h:outputText value="#{turma.codigo}" />
+						</p:column>
+
+						<p:commandButton value="Confirmar" type="button"
+							onclick="PF('tab_turma').hide();" update="form_curso" />
+					</p:dataTable>
+				</p:dialog>
+
+				<p:dialog header="Disciplinas" widgetVar="tab_disciplina"
+					modal="true" height="300" width="600">
+
+					<p:dataTable var="disciplina" value="#{DisciplinaMB.lista}"
+						selection="#{CursoMB.bean.disciplinas}" rowKey="#{disciplina.id}">
+						<f:facet name="header">Selecione as disciplina deste curso</f:facet>
+						<p:column selectionMode="multiple" />
+						<p:column headerText="Id">
+							<h:outputText value="#{disciplina.id}" />
+						</p:column>
+						<p:column headerText="Nome">
+							<h:outputText value="#{disciplina.nome}" />
+						</p:column>
+						<p:column headerText="Carga Horária">
+							<h:outputText value="#{disciplina.cargaHoraria}" />
+						</p:column>
+						<p:column headerText="Professor">
+							<h:outputText value="#{disciplina.professor}" />
+						</p:column>
+					</p:dataTable>
+					<p:commandButton value="Confirmar"
+						onclick="PF('tab_disciplina').hide();"
+						update="form_curso" />
+
+				</p:dialog>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

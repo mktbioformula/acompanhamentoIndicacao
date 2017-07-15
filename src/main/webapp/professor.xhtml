@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+		<ui:define name="content">
+			<h:form id="form_professor">
+				<p:growl sticky="false" life="5000" showDetail="true" />
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome: " />
+					<p:inputText size="50" value="#{ProfessorMB.bean.nome}"
+						required="true" label="Nome" />
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<p:commandButton value="Incluir" update="form_professor"
+						action="#{ProfessorMB.gravar}" />
+				</h:panelGrid>
+
+				<p:dataTable var="professor" value="#{ProfessorMB.lista}">
+					<f:facet name="header">
+						Professores Cadastrados: 
+					</f:facet>
+					<p:column headerText="Id">
+						<h:outputText value="#{professor.id}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{professor.nome}" />
+					</p:column>
+					<p:column headerText="Disciplina">
+						<h:outputText value="#{professor.disciplina}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

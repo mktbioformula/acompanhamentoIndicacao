@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+		<ui:define name="content">
+			<h:form id="form_disciplina">
+				<p:growl sticky="false" life="5000" showDetail="true" />
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome: " />
+					<p:inputText size="50" value="#{DisciplinaMB.bean.nome}"
+						required="true" label="Nome" />
+
+					<p:outputLabel value="Carga Horária: " />
+					<p:inputNumber minValue="0"
+						value="#{DisciplinaMB.bean.cargaHoraria}" required="true"
+						label="Carga Horária" />
+				</h:panelGrid>
+				<h:panelGrid columns="3">
+					<p:outputLabel value="Professor: " />
+					<p:commandButton value="Selecione" type="button"
+						onclick="PF('tab_professor').show();" />
+					<p:outputLabel id="opl_professor"
+						value="#{DisciplinaMB.bean.professor}"></p:outputLabel>
+				</h:panelGrid>
+
+				<p:dialog header="Professores" widgetVar="tab_professor"
+					modal="true" height="300" width="600" closable="false">
+					<p:dataTable id="id_tab_professor" var="professor" value="#{ProfessorMB.lista}"
+						selection="#{DisciplinaMB.bean.professor}"
+						rowKey="#{professor.id}" >
+						<f:facet name="header">Seleciona o Professor da disciplina</f:facet>
+						<p:column selectionMode="single"
+							style="width:16px;text-align:center">
+						</p:column>
+						<p:column headerText="Id">
+							<h:outputText value="#{professor.id}" />
+						</p:column>
+						<p:column headerText="Nome">
+							<h:outputText value="#{professor.nome}" />
+						</p:column>
+						<f:facet name="footer">
+							<p:commandButton process="id_tab_professor" update=":form_disciplina:opl_professor"
+								value="Confirmar"
+								onclick="PF('tab_professor').hide()" />
+						</f:facet>
+					</p:dataTable>
+				</p:dialog>
+
+				<h:panelGrid columns="1">
+					<p:commandButton value="Incluir" update="form_disciplina"
+						action="#{DisciplinaMB.gravar}" />
+				</h:panelGrid>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

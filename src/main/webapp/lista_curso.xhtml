@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+		<ui:define name="content">
+			<h:form id="form_listagem_cursos">
+				<p:dataTable id="dt_listagem_cursos" widgetVar="tabela_cursos"
+					emptyMessage="Nenhum curso foi encontrado."
+					value="#{CursoMB.lista}" filteredValue="#{CursoMB.listaFiltrada}"
+					var="item" paginator="true" rows="10">
+
+					<f:facet name="header">Listagem de Cursos</f:facet>
+					<p:column headerText="Id" sortBy="#{item.id}" filterBy="#{item.id}">
+						<h:outputText value="#{item.id}" />
+					</p:column>
+
+					<p:column headerText="Código" sortBy="#{item.codigo}"
+						filterBy="#{item.codigo}">
+						<h:outputText value="#{item.codigo}" />
+					</p:column>
+
+					<p:column headerText="Opções">
+						<p:commandButton icon="ui-icon-search"
+							oncomplete="PF('dialog_consultar').show()"
+							update=":form_consultar"
+							action="#{CursoMB.obter}">
+							<f:setPropertyActionListener target="#{CursoMB.bean}"
+								value="#{item}" />
+						</p:commandButton>
+					</p:column>
+
+					<f:facet name="footer">
+						<p:button value="Novo" outcome="curso" />
+					</f:facet>
+				</p:dataTable>
+			</h:form>
+
+			<p:dialog header="Consulta de Curso" widgetVar="dialog_consultar"
+				modal="true" resizable="false" draggable="false" >
+				<!-- appendTo="@(body)"> -->
+				<h:form id="form_consultar">
+					<h:panelGrid id="pg_consultar" columns="2">
+						<h:outputLabel value="Id: " />
+						<h:outputText value="#{CursoMB.bean.id}" />
+
+						<h:outputLabel value="Código: " />
+						<h:outputText value="#{CursoMB.bean.codigo}" />
+					</h:panelGrid>
+
+					<p:dataTable var="turma" value="#{CursoMB.bean.turmas}">
+						<f:facet name="header">Turmas deste curso</f:facet>
+
+						<p:column headerText="Id">
+							<h:outputText value="#{turma.id}" />
+						</p:column>
+						<p:column headerText="Código">
+							<h:outputText value="#{turma.codigo}" />
+						</p:column>
+					</p:dataTable>
+
+					<p:dataTable var="disciplina" value="#{CursoMB.bean.disciplinas}">
+						<f:facet name="header">Disciplinas deste curso</f:facet>
+						<p:column headerText="Id">
+							<h:outputText value="#{disciplina.id}" />
+						</p:column>
+						<p:column headerText="Nome">
+							<h:outputText value="#{disciplina.nome}" />
+						</p:column>
+						<p:column headerText="Carga Horária">
+							<h:outputText value="#{disciplina.cargaHoraria}" />
+						</p:column>
+						<p:column headerText="Professor">
+							<h:outputText value="#{disciplina.professor}" />
+						</p:column>
+					</p:dataTable>
+
+					<h:panelGrid columns="2">
+						<p:commandButton value="Fechar"
+							onclick="PF('dialog_consultar').hide()" />
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
