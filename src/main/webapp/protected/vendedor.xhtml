@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/main-with-nav.xhtml">
+	<ui:define name="body">
+		<h:outputStylesheet library="css" name="template.css" />
+
+		<h:form id="form">
+			<p:growl id="growl" showDetail="true" life="5000" />
+
+			<p:panel header="Cadastro de Vendedor">
+				<p:panelGrid columns="7">
+					<p:outputLabel>Nome</p:outputLabel>
+					<p:inputText value="#{VendedorMB.bean.nome}" />
+
+					<p:outputLabel>Celular</p:outputLabel>
+					<p:inputText value="#{VendedorMB.bean.celular}" />
+
+					<p:outputLabel>Email</p:outputLabel>
+					<p:inputText value="#{VendedorMB.bean.email}" />
+
+					<p:commandButton action="#{VendedorMB.cadastraVendedor}"
+						value="Cadastrar" update="form" />
+				</p:panelGrid>
+			</p:panel>
+
+			<p:dataTable id="table" var="row" editable="true" paginator="true"
+				rows="5" value="#{VendedorMB.list}">
+
+				<p:ajax event="rowEdit" listener="#{VendedorMB.edit}"
+					update=":form:growl" />
+				<p:ajax event="rowEditCancel" listener="#{VendedorMB.cancelarEdicao}"
+					update=":form:growl" />
+
+				<p:column headerText="Nome do Formato" sortBy="#{row.nome}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputLabel value="#{row.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{row.nome}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Altura" sortBy="#{row.celular}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputLabel value="#{row.celular}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{row.celular}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Largura" sortBy="#{row.email}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputLabel value="#{row.email}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{row.email}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+
+				<p:column style="width:60px">
+					<p:rowEditor />
+				</p:column>
+
+				<p:column style="width:40px">
+					<p:commandLink id="trash"
+						styleClass="ui-icon ui-icon-trash myIconsSize"
+						action="#{VendedorMB.delete(row)}"
+						update=":form:table  :form:growl" />
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

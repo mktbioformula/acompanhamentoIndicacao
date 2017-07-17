@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/main-with-nav.xhtml">
+	<ui:define name="body">
+	
+		<h:outputStylesheet library="css" name="template.css" />
+
+		<h:form id="papel">
+			<p:growl id="growl" showDetail="false" life="5000" />
+			<p:panel header="Cadastro de Papel">
+				<p:panelGrid columns="4">
+					<p:outputLabel>Papel</p:outputLabel>
+					<p:inputText value="#{PapelMB.bean.nome}" />
+
+					<p:outputLabel>Gramatura</p:outputLabel>
+					<p:inputText value="#{PapelMB.bean.gramatura}" />
+
+					<p:outputLabel>Altura</p:outputLabel>
+					<p:inputText value="#{PapelMB.bean.altura}" />
+
+					<p:outputLabel>Largura</p:outputLabel>
+					<p:inputText value="#{PapelMB.bean.largura}" />
+
+					<p:outputLabel>Nº de Folhas</p:outputLabel>
+					<p:inputText value="#{PapelMB.bean.nFolhas}" />
+
+					<p:outputLabel>Valor Pacote R$</p:outputLabel>
+					<p:inputText value="#{PapelMB.bean.valorPacote}" />
+					<p:commandButton action="#{PapelMB.cadastrar}" value="Cadastrar"
+						update="papel" />
+				</p:panelGrid>
+
+			</p:panel>
+
+
+
+
+			<p:dataTable var="papel" id="table" editable="true" paginator="true"
+				rows="5" value="#{PapelMB.list}">
+
+
+				<p:ajax event="rowEdit" listener="#{PapelMB.edit}"
+					update=":papel:growl" />
+				<p:ajax event="rowEditCancel" listener="#{PapelMB.cancelarEdicao}" />
+
+
+				<p:column headerText="Papel" sortBy="#{papel.nome}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputLabel value="#{papel.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{papel.nome}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Gramatura" sortBy="#{papel.gramatura}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputLabel value="#{papel.gramatura}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{papel.gramatura}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Valor Pacote R$" sortBy="#{papel.valorPacote}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputLabel value="#{papel.valorPacote}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{papel.valorPacote}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:60px">
+					<p:rowEditor />
+				</p:column>
+
+				<p:column style="width:40px">
+					<p:commandLink id="trash"
+						styleClass="ui-icon ui-icon-trash myIconsSize"
+						action="#{PapelMB.delete(papel)}"
+						update=":papel:table :papel:growl" />
+				</p:column>
+
+
+			</p:dataTable>
+
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
