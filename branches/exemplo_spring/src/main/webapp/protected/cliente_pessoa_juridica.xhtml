@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/main-with-nav.xhtml">
+	<ui:define name="body">
+		<h:form icon="fa fa-user" id="cliente_pessoa_juridica">
+			<p:growl id="growl" showDetail="true" life="5000" />
+			<p:panel header="Cadastro de Cliente Pessoa Juridica">
+				<p:panelGrid columns="4">
+					<p:outputLabel>Nome</p:outputLabel>
+					<p:inputText value="#{ClientePessoaJuridicaMB.bean.nome}" />
+
+					<p:outputLabel>CNPJ</p:outputLabel>
+					<p:inputText value="#{ClientePessoaJuridicaMB.bean.cnpj}" />
+
+					<p:outputLabel>Endereço</p:outputLabel>
+					<p:inputText value="#{ClientePessoaJuridicaMB.bean.endereco}" />
+
+					<p:outputLabel>Fone</p:outputLabel>
+					<p:inputText value="#{ClientePessoaJuridicaMB.bean.telefone}" />
+
+					<p:outputLabel>Celular</p:outputLabel>
+					<p:inputText value="#{ClientePessoaJuridicaMB.bean.celular}" />
+
+					<p:outputLabel>E-mail</p:outputLabel>
+					<p:inputText value="#{ClientePessoaJuridicaMB.bean.email}" />
+					<p:commandButton action="#{ClientePessoaJuridicaMB.cadastrar}"
+						value="Cadastrar" update="cliente_pessoa_juridica" />
+				</p:panelGrid>
+
+			</p:panel>
+
+
+
+
+			<p:dataTable id="table" var="row" editable="true" paginator="true"
+				rows="5" value="#{ClientePessoaJuridicaMB.list}">
+
+
+				<p:ajax event="rowEdit" listener="#{ClientePessoaJuridicaMB.edit}"
+					update=":cliente_pessoa_juridica:growl" />
+				<p:ajax event="rowEditCancel"
+					listener="#{ClientePessoaJuridicaMB.cancelarEdicao}" />
+
+
+				<p:column headerText="Cliente" sortBy="#{row.nome}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputLabel value="#{row.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{row.nome}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="CNPJ" sortBy="#{row.cnpj}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputLabel value="#{row.cnpj}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{row.cnpj}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Fone" sortBy="#{row.telefone}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputLabel value="#{row.telefone}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{row.telefone}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:60px">
+					<p:rowEditor />
+				</p:column>
+
+				<p:column style="width:40px">
+					<p:commandLink id="trash"
+						styleClass="ui-icon ui-icon-trash myIconsSize"
+						action="#{ClientePessoaJuridicaMB.delete(row)}"
+						update=":cliente_pessoa_juridica:table  :cliente_pessoa_juridica:growl" />
+				</p:column>
+
+
+			</p:dataTable>
+
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
