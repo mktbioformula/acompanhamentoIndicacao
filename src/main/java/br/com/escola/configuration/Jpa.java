@@ -70,7 +70,7 @@ public class Jpa {
 
 	@Bean(autowire = Autowire.BY_NAME)
 	public String[] packagesToScan() {
-		return QuickstartWebApplicationInitializer.class.getAnnotation(ComponentScan.class).basePackages();
+		return WebApplicationInitializer.class.getAnnotation(ComponentScan.class).basePackages();
 	}
 
 	@Bean(autowire = Autowire.BY_NAME)
