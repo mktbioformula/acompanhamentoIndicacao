@@ -9,11 +9,11 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 @Configuration
 @ComponentScan(basePackages = { "br.com.escola" })
 @Order(1)
-public class QuickstartWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { QuickstartWebApplicationInitializer.class };
+		return new Class<?>[] { WebApplicationInitializer.class };
 	}
 
 	/**

@@ -16,13 +16,13 @@ public class WebApplicationSecurityConfigurerAdapter extends WebSecurityConfigur
 		http.formLogin() 
 				.loginPage("/login.jsf") 
 				.loginProcessingUrl("/login.jsf") 
-				.defaultSuccessUrl("/index.xhtml") 
+				.defaultSuccessUrl("/index.jsf") 
 				.failureUrl("/login.xhtml?source=loginError") 
 				.permitAll();
 
 		http.authorizeRequests()
 				.antMatchers("/").permitAll() 
-				.antMatchers("/index.html").permitAll() 
+				.antMatchers("/index.html").authenticated() 
 				.antMatchers("/public/**", "/resources/**", "/javax.faces.resource/**").permitAll();
 
 		http.authorizeRequests() 
@@ -30,16 +30,16 @@ public class WebApplicationSecurityConfigurerAdapter extends WebSecurityConfigur
 
 		http.logout() 
 				.logoutUrl("/logout") 
-				.logoutSuccessUrl("/login.xhtml?source=logout") 
+				.logoutSuccessUrl("/login.jsf?source=logout") 
 				.permitAll();
 		http.csrf().disable();
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication() //
-				.withUser("admin") //
-				.password("123456") //
+		auth.inMemoryAuthentication() 
+				.withUser("admin") 
+				.password("123456") 
 				.roles("ADMIN");
 	}
 
