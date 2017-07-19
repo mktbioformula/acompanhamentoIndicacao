@@ -5,15 +5,17 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity(debug = false)
 public class WebApplicationSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
-	/*Configuração do spring security*/
-	//https://docs.spring.io/spring-security/site/docs/current/reference/html/jc.html
-	
-	//https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/
+	/* Configuração do spring security */
+	// https://docs.spring.io/spring-security/site/docs/current/reference/html/jc.html
+
+	// https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -23,9 +25,7 @@ public class WebApplicationSecurityConfigurerAdapter extends WebSecurityConfigur
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/resources/**", "/javax.faces.resource/**").permitAll();
 		http.logout().logoutUrl("/logout").logoutSuccessUrl("/login.jsf?source=logout").permitAll();
-		
 
-		
 		http.authorizeRequests().antMatchers("/aluno.jsf").hasRole("ROOT");
 		http.authorizeRequests().anyRequest().authenticated();
 
@@ -34,8 +34,15 @@ public class WebApplicationSecurityConfigurerAdapter extends WebSecurityConfigur
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("123456").roles("ADMIN");
-		auth.inMemoryAuthentication().withUser("root").password("root").roles("ROOT");
+
+		PasswordEncoder chave = new BCryptPasswordEncoder();
+
+		String senhaAdmin = chave.encode("123456");
+		System.out.println("______________Senha admin:"+senhaAdmin);
+		auth.inMemoryAuthentication().withUser("admin").password(senhaAdmin).roles("ADMIN").and()
+				.passwordEncoder(chave);
+		auth.inMemoryAuthentication().withUser("root").password(chave.encode("root")).roles("ROOT").and()
+		.passwordEncoder(chave);
 	}
 
 }
