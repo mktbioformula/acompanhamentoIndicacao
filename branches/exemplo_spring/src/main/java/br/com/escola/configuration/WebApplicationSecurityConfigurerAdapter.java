@@ -20,7 +20,7 @@ public class WebApplicationSecurityConfigurerAdapter extends WebSecurityConfigur
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.formLogin().loginPage("/login.jsf").loginProcessingUrl("/login.jsf").defaultSuccessUrl("/index.jsf")
-				.failureUrl("/login.xhtml?source=loginError").permitAll();
+				.failureUrl("/login.jsf?source=loginError").permitAll();
 
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/resources/**", "/javax.faces.resource/**").permitAll();
