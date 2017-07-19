@@ -38,7 +38,6 @@ public class WebApplicationSecurityConfigurerAdapter extends WebSecurityConfigur
 		PasswordEncoder chave = new BCryptPasswordEncoder();
 
 		String senhaAdmin = chave.encode("123456");
-		System.out.println("______________Senha admin:"+senhaAdmin);
 		auth.inMemoryAuthentication().withUser("admin").password(senhaAdmin).roles("ADMIN").and()
 				.passwordEncoder(chave);
 		auth.inMemoryAuthentication().withUser("root").password(chave.encode("root")).roles("ROOT").and()
