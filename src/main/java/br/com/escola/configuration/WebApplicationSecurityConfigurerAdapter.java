@@ -1,5 +1,8 @@
 package br.com.escola.configuration;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,10 +11,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import br.com.escola.bean.Aluno;
+import br.com.escola.controle.esp.AlunoBCI;
+
 @Configuration
 @EnableWebSecurity(debug = false)
 public class WebApplicationSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private AlunoBCI controleAluno;
+	
 	/* Configuração do spring security */
 	// https://docs.spring.io/spring-security/site/docs/current/reference/html/jc.html
 
@@ -37,9 +46,19 @@ public class WebApplicationSecurityConfigurerAdapter extends WebSecurityConfigur
 
 		PasswordEncoder chave = new BCryptPasswordEncoder();
 
-		String senhaAdmin = chave.encode("123456");
-		auth.inMemoryAuthentication().withUser("admin").password(senhaAdmin).roles("ADMIN").and()
-				.passwordEncoder(chave);
+		List<Aluno> list = controleAluno.select();
+		
+		for (Aluno aluno : list) {
+			
+			String senhaAdmin = chave.encode("123456");
+			auth.inMemoryAuthentication().withUser("admin").password(senhaAdmin).roles("ADMIN").and()
+			.passwordEncoder(chave);
+		}
+		
+		
+		
+		
+		
 		auth.inMemoryAuthentication().withUser("root").password(chave.encode("root")).roles("ROOT").and()
 		.passwordEncoder(chave);
 	}
