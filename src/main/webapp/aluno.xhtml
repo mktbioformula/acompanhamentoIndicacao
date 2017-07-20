@@ -5,13 +5,16 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
 <h:head>
 </h:head>
 <h:body>
 	<ui:composition template="template/template.xhtml">
 		<ui:define name="content">
 			<h:form id="form_aluno">
+
+
 				<p:growl sticky="false" life="5000" showDetail="true" />
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Nome: " />
@@ -48,6 +51,7 @@
 						action="#{AlunoMB.gravar}" />
 				</h:panelGrid>
 
+				<sec:authorize access="hasAnyAuthority('ADMIN')">
 				<p:dataTable var="aluno" value="#{AlunoMB.lista}">
 					<f:facet name="header">
 						Alunos Cadastrados:
@@ -62,6 +66,7 @@
 						<h:outputText value="#{aluno.turma}" />
 					</p:column>
 				</p:dataTable>
+				</sec:authorize>
 
 			</h:form>
 		</ui:define>
