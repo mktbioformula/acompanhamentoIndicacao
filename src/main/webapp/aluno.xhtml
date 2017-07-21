@@ -52,20 +52,20 @@
 				</h:panelGrid>
 
 				<sec:authorize access="hasAnyAuthority('ADMIN')">
-				<p:dataTable var="aluno" value="#{AlunoMB.lista}">
-					<f:facet name="header">
+					<p:dataTable var="aluno" value="#{AlunoMB.lista}">
+						<f:facet name="header">
 						Alunos Cadastrados:
 					</f:facet>
-					<p:column headerText="Id">
-						<h:outputText value="#{aluno.id}" />
-					</p:column>
-					<p:column headerText="Nome">
-						<h:outputText value="#{aluno.nome}" />
-					</p:column>
-					<p:column headerText="Turma">
-						<h:outputText value="#{aluno.turma}" />
-					</p:column>
-				</p:dataTable>
+						<p:column headerText="Id">
+							<h:outputText value="#{aluno.id}" />
+						</p:column>
+						<p:column headerText="Nome">
+							<h:outputText value="#{aluno.nome}" />
+						</p:column>
+						<p:column headerText="Turma">
+							<h:outputText value="#{aluno.turma}" />
+						</p:column>
+					</p:dataTable>
 				</sec:authorize>
 
 			</h:form>
