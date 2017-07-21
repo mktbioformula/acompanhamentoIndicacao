@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+		<ui:define name="content">
+			<h:form id="form_aluno">
+
+
+				<p:growl sticky="false" life="5000" showDetail="true" />
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome: " />
+					<p:inputText size="50" value="#{AlunoMB.bean.nome}" required="true"
+						label="Nome" />
+
+					<p:outputLabel value="Turma: " />
+					<p:commandButton value="Selecionar" type="button"
+						onclick="PF('tab_turma').show();" />
+				</h:panelGrid>
+
+				<p:dialog header="Turmas" widgetVar="tab_turma" modal="true"
+					height="300" width="600">
+
+					<p:dataTable var="turma" value="#{TurmaMB.lista}"
+						selection="#{AlunoMB.bean.turma}" rowKey="#{turma.id}">
+						<f:facet name="header">Selecione a turma do aluno</f:facet>
+						<p:column selectionMode="single"
+							style="width:16px;text-align:center" />
+						<p:column headerText="Id">
+							<h:outputText value="#{turma.id}" />
+						</p:column>
+						<p:column headerText="Código">
+							<h:outputText value="#{turma.codigo}" />
+						</p:column>
+						<p:column headerText="Curso">
+							<h:outputText value="#{turma.curso}" />
+						</p:column>
+					</p:dataTable>
+				</p:dialog>
+
+				<h:panelGrid columns="1">
+					<p:commandButton value="Incluir" update="form_aluno"
+						action="#{AlunoMB.gravar}" />
+				</h:panelGrid>
+
+				<sec:authorize access="hasAnyAuthority('ADMIN')">
+					<p:dataTable var="aluno" value="#{AlunoMB.lista}">
+						<f:facet name="header">
+						Alunos Cadastrados:
+					</f:facet>
+						<p:column headerText="Id">
+							<h:outputText value="#{aluno.id}" />
+						</p:column>
+						<p:column headerText="Nome">
+							<h:outputText value="#{aluno.nome}" />
+						</p:column>
+						<p:column headerText="Turma">
+							<h:outputText value="#{aluno.turma}" />
+						</p:column>
+					</p:dataTable>
+				</sec:authorize>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+		<ui:define name="content">
+			<h:form id="form_disciplina">
+			<p:growl sticky="false" life="5000" showDetail="true" />
+			<p:panel header="Cadastro de Disciplinas">
+				<p:outputLabel value="Nome" />
+				<p:inputText value="#{DisciplinaMB.bean.nome}" />
+
+				<p:outputLabel value="Carga Horária" />
+				<p:inputText value="#{DisciplinaMB.bean.cargaHoraria}" />
+
+				<p:commandButton action="#{DisciplinaMB.insert}" 
+				update="form_disciplina" value="Cadastrar" />
+			</p:panel>
+
+				<p:dataTable var="disciplina" value="#{DisciplinaMB.list}">
+					<p:column headerText="Nome">#{disciplina.nome}</p:column>
+					<p:column  headerText="Carga Horária">#{disciplina.cargaHoraria}</p:column>
+				</p:dataTable>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
+
+
+
