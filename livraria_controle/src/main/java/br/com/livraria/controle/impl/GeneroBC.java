@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.livraria.bean.Genero;
 import br.com.livraria.controle.esp.GeneroBCI;
-import br.com.livraria.dao.impl.GeneroDaoI;
+import br.com.livraria.dao.esp.GeneroDaoI;
 
 @Controller
 public class GeneroBC implements GeneroBCI{
