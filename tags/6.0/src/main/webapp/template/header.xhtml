@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<ui:composition>
+
+		<div id="topo"></div>
+
+		<p:menubar autoDisplay="false">
+			<p:submenu label="Cadastrar" icon="ui-icon-document">
+				<p:menuitem value="Usuário" url="usuario.jsf" />			
+				<p:menuitem value="Autor" url="Autor.jsf" />
+				<p:menuitem value="Livro" url="livro.jsf" />
+				<p:menuitem value="Genero" url="genero.jsf" />
+			</p:submenu>
+			<p:submenu label="Listas" icon="ui-icon-document">
+				<p:menuitem value="Lista de Usuários" url="list_usuario.jsf" />
+				<p:menuitem value="Lista de Livros" url="list_livro.jsf" />
+				
+			</p:submenu>
+
+		</p:menubar>
+	</ui:composition>
+</body>
+</html>
+
+
