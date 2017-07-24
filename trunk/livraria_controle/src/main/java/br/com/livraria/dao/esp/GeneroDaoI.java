@@ -1,4 +1,4 @@
-package br.com.livraria.dao.impl;
+package br.com.livraria.dao.esp;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
