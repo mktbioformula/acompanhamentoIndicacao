@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import br.com.livraria.bean.Autor;
 import br.com.livraria.controle.esp.AutorBCI;
@@ -14,7 +15,7 @@ import br.com.livraria.view.util.JSFUtil;
 
 @ManagedBean(name = "AutorMB")
 @Scope("view")
-public class AutorMB {
+public class AutorMB extends SpringBeanAutowiringSupport {
 	
 	private Autor bean;
 	private List<Autor> list;
