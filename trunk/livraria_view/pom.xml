@@ -31,8 +31,8 @@
 	<!-- Camadas de controle e DAO -->
 	<dependencies>
 		<dependency>
-			<groupId>arquitetura_controle</groupId>
-			<artifactId>arquitetura_controle</artifactId>
+			<groupId>livraria_controle</groupId>
+			<artifactId>livraria_controle</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<!-- JSF -->
