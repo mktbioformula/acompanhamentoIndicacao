@@ -1,10 +1,10 @@
 package util;
 
-import controle.ws.EditoraWSCliente;
+import controle.ws.GeneroWSCliente;
 
 public class Start {
 	public static void main(String[] args) {
-		EditoraWSCliente editoraCliente = new EditoraWSCliente();
+		GeneroWSCliente editoraCliente = new GeneroWSCliente();
 
 		
 		editoraCliente.select();

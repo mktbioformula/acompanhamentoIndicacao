@@ -8,13 +8,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class UsuarioWS {
+public class GeneroWSCliente {
 
 	public void select() {
 
 		try {
 
-			URL url = new URL("http://localhost:8080/livraria_ws/select_usuarios");
+			URL url = new URL("http://localhost:8080/livraria_ws/selecionar_generos");
 
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
@@ -49,13 +49,13 @@ public class UsuarioWS {
 	public void insert() {
 		try {
 
-			URL url = new URL("http://localhost:8080/livraria_ws/insert_usuario");
+			URL url = new URL("http://localhost:8080/livraria_ws/cadastrar_genero");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "application/json");
 
-			String input = "{\"id\":10,\"nome\":\"Gustavo\",\"fone\": \"98655555\" }";
+			String input = "{\"id\":10,\"nome\":\"Terror\" }";
 
 			OutputStream os = conn.getOutputStream();
 			os.write(input.getBytes());
