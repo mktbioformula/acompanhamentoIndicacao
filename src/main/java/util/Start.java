@@ -1,18 +1,17 @@
 package util;
 
-import controle.ws.UsuarioWS;
+import controle.ws.EditoraWSCliente;
 
 public class Start {
 	public static void main(String[] args) {
-		UsuarioWS user = new UsuarioWS();
+		EditoraWSCliente editoraCliente = new EditoraWSCliente();
 
 		
-		user.select();
+		editoraCliente.select();
 		System.out.println("-------------------");
-		user.insert();
+		editoraCliente.insert();
 		System.out.println("-------------------");
-		user.select();
-	
+		editoraCliente.select();
 
 	}
 }
