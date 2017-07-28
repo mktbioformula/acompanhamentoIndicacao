@@ -13,6 +13,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>livraria_controle</groupId>
+			<artifactId>livraria_controle</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${springframework.version}</version>
