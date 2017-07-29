@@ -30,6 +30,11 @@ public class Livro {
 	private String genero;
 	@ManyToMany(mappedBy = "livros")
 	private List<Emprestimo> emprestimos;
+	
+	/*
+	 * 
+	 * 
+	 * */
 
 	public List<Emprestimo> getEmprestimos() {
 		return emprestimos;
