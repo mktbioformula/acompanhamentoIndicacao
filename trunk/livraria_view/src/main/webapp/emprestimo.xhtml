@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+		<ui:define name="content">
+			<h:form id="form_cad">
+				<p:growl sticky="false" life="5000" showDetail="true" />
+				<h:panelGrid columns="1">
+					
+					<p:outputLabel value="Emprestimo" />
+					<p:inputText value="#{EmprestimoMB.bean.nome}" required="true"/>
+					
+					<p:commandButton value="Cadastrar" update="form_cad"
+						action="#{EmprestimoMB.gravar}"  />
+				</h:panelGrid>
+				
+				<p:dataTable var="emprestimo" value="#{EmprestimoMB.lista}">
+			<p:column headerText="Livro">
+				#{emprestimo.livros}
+			</p:column>
+			<p:column headerText="Cliente">
+				#{emprestimo.cliente}
+			</p:column>
+			<p:column headerText="Usuário">
+				#{emprestimo.usuario}
+			</p:column>
+			<p:column headerText="Data de inicio">
+				#{emprestimo.inicio}
+			</p:column>
+			<p:column headerText="Data de entrega">
+				#{emprestimo.fim}
+			</p:column>
+			
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
