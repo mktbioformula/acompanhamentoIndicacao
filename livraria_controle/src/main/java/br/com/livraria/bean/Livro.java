@@ -3,22 +3,24 @@ package br.com.livraria.bean;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name = "seq_livro", 
-sequenceName = "livro_seq", initialValue = 1)
+@SequenceGenerator(name = "seq_livro", sequenceName = "livro_seq", initialValue = 1)
 public class Livro {
 
 	@Id
-	@GeneratedValue(strategy =
-	GenerationType.SEQUENCE, generator = "seq_livro")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_livro")
 	private Integer id;
 	private String nome;
 	@OneToOne
@@ -27,22 +29,11 @@ public class Livro {
 	private Editora editora;
 	private String edicao;
 	private Date publicacao;
-	private String genero;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_genero")
+	private Genero genero;
 	@ManyToMany(mappedBy = "livros")
 	private List<Emprestimo> emprestimos;
-	
-	/*
-	 * 
-	 * 
-	 * */
-
-	public List<Emprestimo> getEmprestimos() {
-		return emprestimos;
-	}
-
-	public void setEmprestimos(List<Emprestimo> emprestimos) {
-		this.emprestimos = emprestimos;
-	}
 
 	public Integer getId() {
 		return id;
@@ -92,12 +83,20 @@ public class Livro {
 		this.publicacao = publicacao;
 	}
 
-	public String getGenero() {
+	public Genero getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(Genero genero) {
 		this.genero = genero;
+	}
+
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
 	}
 
 }
