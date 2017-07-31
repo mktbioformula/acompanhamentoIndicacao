@@ -24,13 +24,13 @@ public class GeneroBC implements GeneroBCI{
 
 	@Override
 	public void delete(Genero g) {
-		dao.save(g);
+		dao.delete(g);
 		
 	}
 
 	@Override
 	public void update(Genero g) {
-		dao.delete(g);
+		dao.save(g);
 		
 	}
 
