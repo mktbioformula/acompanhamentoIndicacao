@@ -16,7 +16,9 @@
 				<h:panelGrid columns="1">
 					
 					<p:outputLabel value="Emprestimo" />
-					<p:inputText value="#{EmprestimoMB.bean.nome}" required="true"/>
+					<p:inputText value="#{EmprestimoMB.bean.cliente}" required="true"/>
+					<p:inputText value="#{EmprestimoMB.bean.livros}" required="true"/>
+					<p:inputText value="#{EmprestimoMB.bean.usuario}" required="true"/>
 					
 					<p:commandButton value="Cadastrar" update="form_cad"
 						action="#{EmprestimoMB.gravar}"  />
