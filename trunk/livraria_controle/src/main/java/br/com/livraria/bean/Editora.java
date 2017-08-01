@@ -1,9 +1,12 @@
 package br.com.livraria.bean;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -19,6 +22,9 @@ public class Editora {
 	private String nome;
 	private String telefone;
 	private String endereco;
+	
+	@OneToMany(targetEntity = Livro.class, mappedBy = "editora")
+	private List<Livro> livros;
 	
 	public Integer getId() {
 		return id;
@@ -43,6 +49,12 @@ public class Editora {
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+	public List<Livro> getLivros() {
+		return livros;
+	}
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
 	}
 	
 	
