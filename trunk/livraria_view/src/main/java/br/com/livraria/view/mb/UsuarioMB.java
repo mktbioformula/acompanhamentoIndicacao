@@ -10,12 +10,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import br.com.livraria.bean.Usuario;
+import br.com.livraria.controle.esp.UsuarioBCI;
 import br.com.livraria.view.util.JSFUtil;
 
 @ManagedBean(name = "UsuarioMB")
 @Scope("View")
 public class UsuarioMB extends SpringBeanAutowiringSupport{
-	/*
+	
 	private Usuario bean;
 	private List<Usuario> lista;
 	@Autowired
@@ -54,7 +55,7 @@ public class UsuarioMB extends SpringBeanAutowiringSupport{
 	}
 	
 	
-*/
+
 	
 	
 }
