@@ -18,7 +18,7 @@
 					<p:inputText value="#{ClienteMB.bean.nome}" />
 
 					<p:outputLabel value="CPF: " />
-					<p:inputText value="#{ClienteMB.bean.cpf}" />
+					<p:inputMask value="#{ClienteMB.bean.cpf}" mask="999.999.999-99"/>
 
 					<p:commandButton value="Gravar" action="#{ClienteMB.gravar}"
 						update="form_cliente" />
