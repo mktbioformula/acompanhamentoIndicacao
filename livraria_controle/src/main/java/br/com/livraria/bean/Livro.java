@@ -25,11 +25,12 @@ public class Livro {
 	private String nome;
 	@OneToOne
 	private Autor autor;
-	@OneToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+	@JoinColumn(name = "fk_editora")
 	private Editora editora;
 	private String edicao;
 	private Date publicacao;
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "fk_genero")
 	private Genero genero;
 	@ManyToMany(mappedBy = "livros")
