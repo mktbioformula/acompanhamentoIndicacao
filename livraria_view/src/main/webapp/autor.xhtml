@@ -18,7 +18,7 @@
 					<p:inputText value="#{AutorMB.bean.nome}" />
 
 					<p:outputLabel value="CPF: " />
-					<p:inputText value="#{AutorMB.bean.cpf}" />
+					<p:inputMask value="#{AutorMB.bean.cpf}" mask="999.999.999-99"/>
 
 					<p:commandButton value="Gravar" action="#{AutorMB.gravar}"
 						update="form_autor" />
