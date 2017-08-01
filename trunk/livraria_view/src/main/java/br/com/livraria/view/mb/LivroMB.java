@@ -1,4 +1,4 @@
-package br.com.livraria.view.configuration;
+package br.com.livraria.view.mb;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.faces.webflow.JsfUtils;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import br.com.livraria.bean.Livro;
@@ -23,11 +22,17 @@ public class LivroMB extends SpringBeanAutowiringSupport {
 	@Autowired
 	private LivroBCI controle;
 	private List<Livro> lista;
+	private String labelGenero;
+	private String labelAutor;
+	private String labelEditora;
 	
 	@PostConstruct
 	public void inicializar() {
 		this.bean = new Livro();
 		this.lista = controle.select();
+		this.labelGenero = "Selecionar";
+		this.labelAutor = "Selecionar";
+		this.labelEditora = "Selecionar";
 	}
 
 	public Livro getBean() {
@@ -44,6 +49,30 @@ public class LivroMB extends SpringBeanAutowiringSupport {
 
 	public void setLista(List<Livro> lista) {
 		this.lista = lista;
+	}
+
+	public String getLabelGenero() {
+		return labelGenero;
+	}
+
+	public void setLabelGenero(String labelGenero) {
+		this.labelGenero = labelGenero;
+	}
+
+	public String getLabelAutor() {
+		return labelAutor;
+	}
+
+	public void setLabelAutor(String labelAutor) {
+		this.labelAutor = labelAutor;
+	}
+
+	public String getLabelEditora() {
+		return labelEditora;
+	}
+
+	public void setLabelEditora(String labelEditora) {
+		this.labelEditora = labelEditora;
 	}
 
 	public void insert() {
@@ -68,5 +97,17 @@ public class LivroMB extends SpringBeanAutowiringSupport {
 		
 		this.bean = new Livro();
 		this.lista = controle.select();		
-	}	
+	}
+	
+	public void mostrarSelecaoGenero() {
+		this.labelGenero = "Selecionado: " + this.bean.getGenero().getNome();
+	}
+	
+	public void mostrarSelecaoAutor() {
+		this.labelAutor = "Selecionado: " + this.bean.getAutor().getNome();
+	}
+	
+	public void mostrarSelecaoEditora() {
+		this.labelEditora = "Selecionada: " + this.bean.getEditora().getNome();
+	}
 }
