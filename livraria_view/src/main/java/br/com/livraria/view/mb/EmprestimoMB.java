@@ -22,11 +22,21 @@ public class EmprestimoMB extends SpringBeanAutowiringSupport {
 	@Autowired
 	private EmprestimoBCI controle;
 	private List<Emprestimo> lista;
+	private String txtBtnCliente;
 	
 	@PostConstruct
 	public void init() {
 		this.bean = new Emprestimo();
 		this.lista = controle.select();
+		this.txtBtnCliente = "Selecione um cliente";
+	}
+
+	public String getTxtBtnCliente() {
+		return txtBtnCliente;
+	}
+
+	public void setTxtBtnCliente(String txtBtnCliente) {
+		this.txtBtnCliente = txtBtnCliente;
 	}
 
 	public Emprestimo getBean() {
@@ -48,11 +58,14 @@ public class EmprestimoMB extends SpringBeanAutowiringSupport {
 	public void gravar() {
 		this.controle.inserir(bean);
 		
-		JSFUtil.adicionarMensagemSucesso(String.format("Emprestimo %s realizado com sucesso.", bean.getCliente()));
+		JSFUtil.adicionarMensagemSucesso(String.format("Emprestimo realizado com sucesso para %s", bean.getCliente().getNome()));
 		
-		this.bean = new Emprestimo();
-		this.lista = controle.select();
+		this.init();
 
+	}
+	
+	public void teste(){
+		this.txtBtnCliente = this.bean.getCliente().getNome();
 	}
 	
 }
