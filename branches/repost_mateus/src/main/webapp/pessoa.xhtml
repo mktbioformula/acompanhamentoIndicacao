@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+
+
+		<ui:define name="content">
+			<h:form id="form_cad">
+
+
+				<p:growl sticky="false" life="5000" showDetail="true" />
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome" />
+					<p:inputText value="#{PessoaMB.bean.nome}" required="true"
+						requiredMessage="Por favor informe o nome" />
+
+					<p:outputLabel value="Data Nascimento" />
+					<p:calendar value="#{PessoaMB.bean.dataNascimento}" required="true"
+						requiredMessage="Por favor informe a data de nascimento" />
+
+					<p:outputLabel value="RG" />
+					<p:inputText value="#{PessoaMB.bean.rg}" required="true"
+						requiredMessage="Por favor informe o RG" />
+
+					<p:outputLabel value="CPF" />
+					<p:inputText value="#{PessoaMB.bean.cpf}" required="true"
+						requiredMessage="Por favor informe o CPF" />
+
+					<p:outputLabel value="Sexo" />
+					<p:inputText value="#{PessoaMB.bean.sexo}" required="true"
+						requiredMessage="Por favor informe o sexo" size="1" />
+
+					<p:commandButton value="Cadastrar" update="form_cad, :form_tabela"
+						action="#{PessoaMB.gravar}" />
+				</h:panelGrid>
+			</h:form>
+			<h:form id="form_tabela">
+				<p:dataTable id="tabela_pessoa" var="pessoa"
+					value="#{PessoaMB.lista}">
+					<p:column headerText="Id">
+						#{pessoa.id}
+					</p:column>
+					<p:column headerText="Nome">
+						#{pessoa.nome}
+					</p:column>
+					<p:column headerText="Data Nascimento">
+						#{pessoa.dataNascimento}
+					</p:column>
+					<p:column headerText="RG">
+						#{pessoa.rg}
+					</p:column>
+					<p:column headerText="CPF">
+						#{pessoa.cpf}
+					</p:column>
+					<p:column headerText="Sexo">
+						#{pessoa.sexo}
+					</p:column>
+					<p:column>
+						<p:commandButton action="#{PessoaMB.gerarRelatorio}"
+							icon="ui-icon-document" ajax="false">
+							<f:setPropertyActionListener value="#{pessoa}" target="#{PessoaMB.bean}" />
+
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
