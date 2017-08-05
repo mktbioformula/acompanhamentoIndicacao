@@ -30,6 +30,13 @@
 	</dependencyManagement>
 	<!-- Camadas de controle e DAO -->
 	<dependencies>
+		<!-- ferramenta de relatórios -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>5.6.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>livraria_controle</groupId>
 			<artifactId>livraria_controle</artifactId>
