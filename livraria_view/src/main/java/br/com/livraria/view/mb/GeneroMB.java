@@ -11,6 +11,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import br.com.livraria.bean.Genero;
 import br.com.livraria.controle.esp.GeneroBCI;
+import br.com.livraria.controle.impl.GeneroBC;
 import br.com.livraria.view.util.JSFUtil;
 
 @ManagedBean(name = "GeneroMB")
@@ -54,3 +55,13 @@ public class GeneroMB extends SpringBeanAutowiringSupport{
 		
 	}
 }
+
+
+
+
+
+
+
+
+
+
