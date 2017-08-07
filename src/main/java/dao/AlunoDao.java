@@ -25,4 +25,33 @@ public class AlunoDao {
 
 	}
 
+	
+	public Aluno selectNg(String nome) {
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		Transaction tx = s.beginTransaction();
+		Aluno l = (Aluno) s.getNamedQuery("selectAlunos")
+				.setParameter("nome", nome)
+				.uniqueResult();
+		tx.commit();
+		s.close();
+		return l;
+
+	}
+	
+	
+	public List<Aluno> select(Curso c) {
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		Transaction tx = s.beginTransaction();
+		List<Aluno> l = s.createCriteria(Aluno.class)
+				.createAlias("cursos", "cs")
+				.add(Restrictions.eq("cs.nome", c.getNome()))
+				.list();
+		tx.commit();
+		s.close();
+		return l;
+
+	}
+
 }
