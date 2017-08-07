@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,8 @@ public class Curso {
 	@ManyToMany(targetEntity = Aluno.class, cascade = CascadeType.ALL)
 	@JoinTable(name = "aluno_curso", joinColumns = @JoinColumn(name = "fk_curso"), inverseJoinColumns = @JoinColumn(name = "fk_aluno"))
 	private List<Aluno> alunos;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, 
+			fetch = FetchType.LAZY)
 	private Professor professor;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_escola")
