@@ -22,7 +22,9 @@ public class Escola {
 	private Integer id;
 	private String nome;
 	private String endereco;
-	@OneToMany(mappedBy = "escola", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "escola", 
+			cascade = CascadeType.ALL, 
+			fetch = FetchType.LAZY)
 	private List<Curso> cursos;
 	
 	public Integer getId() {
